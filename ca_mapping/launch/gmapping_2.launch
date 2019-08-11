@@ -5,19 +5,17 @@
 <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping0" output="screen">
 <remap from="scan" to="/robot_0/base_scan"/>
 <param name="sigma" value="0.05"/>
-<param name="base_frame" value="/robot_0"/>
+<param name="base_frame" value="/robot_0/base_link"/>
 <remap from="map" to="/gmapping/map0"/>
 <remap from="map_metadata" to="/gmapping/metadata0"/>
-
-
+</node>
 
 <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping1" output="screen">
 <remap from="scan" to="/robot_1/base_scan"/>
 <param name="sigma" value="0.05"/>
-<param name="base_frame" value="/robot_1"/>
+<param name="base_frame" value="/robot_1/base_link"/>
 <remap from="map" to="/gmapping/map1"/>
 <remap from="map_metadata" to="/gmapping/metadata1"/>
-
 </node>
 
 </launch>
