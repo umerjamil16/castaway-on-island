@@ -1,0 +1,44 @@
+<launch>
+  <!--- Run AMCL 
+  <include file="$(find ca_loc)/launch/amcl.launch" />
+  <remap from="cmd_vel" to="cmd_vel" />
+    -->
+  <!-- Run move_base for robot 0-->
+  <group ns="robot_0">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base0" output="screen">
+    <rosparam file="$(find ca_path_planning)/config/move_base_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find ca_path_planning)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find ca_path_planning)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config/global_costmap_params_map.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config/global_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="15.0" />
+  </node>
+
+</group>
+
+  <!-- Run move_base -->
+  <group ns="robot_1">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base1" output="screen">
+    <rosparam file="$(find ca_path_planning)/config1/move_base_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config1/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find ca_path_planning)/config1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find ca_path_planning)/config1/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config1/global_costmap_params_map.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config1/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find ca_path_planning)/config1/global_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="15.0" />
+  </node>
+
+</group>
+
+</launch>
