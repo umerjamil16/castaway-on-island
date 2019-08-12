@@ -1,0 +1,16 @@
+roslaunch ca_mapping gmapping_3.launch
+
+roslaunch ca_mapping map_merge.launch
+
+rosrun stage_ros stageros island.world 
+rosrun tf static_transform_publish 0 0 0 0 0 0 /map /robot_0/odom 1000
+rosrun tf static_transform_publisher -3.1 0 0 0 0 0 /map /robot_1/odom 1000
+
+
+rosrun rqt_tf_tree rqt_tf_tree
+
+
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=/robot_0/cmd_vel
+rosrun map_server map_saver -f mymap
+rosrun map_server map_saver -f map_l_1 map:=/map_merged_1
+
