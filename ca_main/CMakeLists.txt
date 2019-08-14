@@ -58,6 +58,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
    FILES
    GoalCustomSrv.srv
+   GoalSrv0.srv
+   GoalSrv1.srv
 #   Service1.srv
 #   Service2.srv
 )

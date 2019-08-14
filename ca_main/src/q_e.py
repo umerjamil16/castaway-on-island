@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 ###################################
-# TESTING PURPOSES  /get_goal service /copied file
+# TESTING PURPOSES  /get_goal service
 #
 ###################################
 
