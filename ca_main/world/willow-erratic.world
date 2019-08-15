@@ -24,8 +24,8 @@ define erratic position
   size [0.15 0.15 0.25]
   origin [-0.05 0 0 0]
   gui_nose 1
-  drive "omni"
-  topurg(pose [ 0.00 0.000 0 0.000 ])
+  drive "diff"
+  topurg(pose [ 0.050 0.000 0 0.000 ])
 )
 
 define floorplan model
@@ -55,7 +55,7 @@ window
 (
   size [ 745.000 448.000 ]
 
-  rotate [ 0.000 0 ]
+  rotate [ 0.000 -1.560 ]
   scale 28.806
 )
 
@@ -63,12 +63,11 @@ window
 floorplan
 (
   name "willow"
-  bitmap "island.png"
-  size [10 10 0.5]
-  pose [ 0 0.000 0 00.000 ]
+  bitmap "q.jpg"
+  size [3 3 0.5]
+  pose [ 0 0.000 0 90.000 ]
 )
 
 # throw in a robot
-erratic( pose [ 0 0 0 0.000 ] name "first_tb3" color "blue")
-erratic( pose [ -3.1 0 0 0.000 ] name "second_tb3" color "red")
+erratic( pose [ 0 0 0 180.000 ] name "era" color "blue")
 #block( pose [ -.7 .7 0 180.000 ] color "red")

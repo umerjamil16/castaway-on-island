@@ -1,0 +1,2 @@
+rosrun tf static_transform_publisher 0 0 0 1.57 0 0 /map /robot_0/odom 1000
+rosrun tf static_transform_publisher -3 0 0 1.57 0 0 /map /robot_1/odom 1000

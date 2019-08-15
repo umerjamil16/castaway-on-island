@@ -11,55 +11,29 @@ from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 from ca_main.srv import GoalCustomSrv, GoalCustomSrvResponse
 
-# GLOBAL VARS
-inner_circle_rad =  ((2.73272664774 + 2.68263825162)/2) #2.70765
-theta_0 = 0
-tol =0.8
-
 goal_x = 0.0
-goal_y = 0.0
-goal_circle_rad = 0.0
-measured_circle_rad = 0
+
 
 def goal_service_callback(request):
-		rospy.loginfo("GoalService Callback has been called")
-		response = GoalCustomSrvResponse()
-		response.t = theta_0
-		rospy.loginfo("get_robot_0_yaw_angle Yaw: " + str(response.t))
-		return response
+	rospy.loginfo("get_robot_0_pos Callback has been called")
+	response = GoalCustomSrvResponse()
+	response.t = goal_x
+	rospy.loginfo("get_robot_0_pos X: " + str(response.t))
+	return response
 	
-# GOAL GENERATION FUNCTION
 def get_yaw_angle(msg):
 	global goal_x, goal_y, goal_circle_rad, inner_circle_rad, tol, roll, pitch, yaw, measured_circle_rad, theta_0
 	pose_q = msg.pose.pose.position
-	if pose_q.x != 0 and pose_q.y != 0:
-		theta_0 = math.atan2(pose_q.y, pose_q.x)
-	else:
-		theta_0 = 0
-#	measured_circle_rad = math.sqrt((pose_q.x * pose_q.x) + (pose_q.y * pose_q.y)) #for manual measurement of radius of inner circle
-	orientation_q = msg.pose.pose.orientation
-	orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
-	(roll, pitch, yaw) = euler_from_quaternion(orientation_list)
+	goal_x = pose_q.x
 
 
-
-rospy.init_node('my_quaternion_to_euler1')
+rospy.init_node('robot_0_pos_srv_node')
  
 sub = rospy.Subscriber ('/robot_0/odom', Odometry, get_yaw_angle)
 
-my_service = rospy.Service('/get_robot_0_yaw_angle', GoalCustomSrv , goal_service_callback) # create the Service called my_service with the defined callback
+my_service = rospy.Service('/get_robot_0_pos', GoalCustomSrv , goal_service_callback) # create the Service called my_service with the defined callback
  
-rospy.loginfo("Service /get_robot_0_yaw_angle Ready")
+rospy.loginfo("Service /get_robot_0_pos Ready")
 
-
-## MAIN PROGRAM FILE
- 
 r = rospy.Rate(100)
-#print 'Goal_x: ' + str(goal_x) + 'Goal_y' + str(goal_y) + 'Goal_YAW' + str(theta_0)
-
 rospy.spin()
-#while not rospy.is_shutdown():
-#	print "node live"
-#	print 'Goal_x: ' + str(goal_x) + 'Goal_y' + str(goal_y) + 'Goal_YAW' + str(theta_0)
-	#	print yaw_rad
-#	r.sleep()

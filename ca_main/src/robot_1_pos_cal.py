@@ -20,7 +20,7 @@ def update_robot_1_pos(msg):
     print "hello"
     global robot_1_x, robot_1_y
     robot_1_x = msg.pose.pose.position.x
-    robot_1_y = msg.pose.pose.position.y
+    robot_1_y = msg.pose.pose.position.y #+ 3
     rospy.loginfo("Current pos of robot_1: X: " + str(robot_1_x) + " Y: " + str(robot_1_y))
 	        
 if __name__ == '__main__':

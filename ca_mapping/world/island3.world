@@ -9,8 +9,8 @@ define topurg ranger
 (
 	sensor(
     range [ 0.0  30.0 ]
-    fov 270.25
-   samples 1081
+    fov 360
+   samples 1080
   )
 
   # generic model properties
@@ -20,8 +20,21 @@ define topurg ranger
 
 define erratic position
 (
+      block
+      (
+            points 6
+            point[0] [0.75 0]
+            point[1] [1 0.25]
+            point[2] [1 0.75]
+            point[3] [0.75 1]
+            point[4] [0 1]
+            point[5] [0 0]
+            z [0 1]
+      ))
+define erratic1 position
+(
   #size [0.415 0.392 0.25]
-  size [0.15 0.15 0.25]
+  size [0.05 0.05 0.25]
   origin [-0.05 0 0 0]
   gui_nose 1
   drive "omni"
@@ -69,6 +82,6 @@ floorplan
 )
 
 # throw in a robot
-erratic( pose [ 0 0 0 0.000 ] name "first_tb3" color "blue")
-erratic( pose [ -3.1 0 0 0.000 ] name "second_tb3" color "red")
+erratic( pose [ 0 0 0 90.000 ] name "first_tb3" color "blue")
+#erratic1( pose [ -3 0 0 90.000 ] name "second_tb3" color "red")
 #block( pose [ -.7 .7 0 180.000 ] color "red")
